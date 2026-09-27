@@ -1,0 +1,109 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="TO DO - PASCUA - WK11 D2_EXERCISE 1"/>
+        <attribute name="authors" value="gaea nikolaev"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2026-09-27 10:23:01 pm"/>
+        <attribute name="created" value="Z2FlYSBuaWtvbGFldjtMQVBUT1AtRk82S01LVUI7MjAyNi0wOS0yNDswODo1MDozNiBwbTszNzMy"/>
+        <attribute name="edited" value="Z2FlYSBuaWtvbGFldjtMQVBUT1AtRk82S01LVUI7MjAyNi0wOS0yNzsxMDoyMzowMSBwbTszMzszODgx"/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="number" type="Integer" array="False" size=""/>
+            <output expression="&quot;Hello, dear user! I am Flowy, your friendly Mathematics teacher! Today, we'll calculate the average of the numbers you input. Oh before that, what's your name?&quot;" newline="True"/>
+            <declare name="Name" type="String" array="False" size=""/>
+            <input variable="Name"/>
+            <output expression="&quot;Wonderful name! Let's start! How many numbers do you need the program to average?&quot;" newline="True"/>
+            <output expression="&quot;Just a reminder, &quot; &amp; Name &amp; &quot;! The average will be rounded up to 2 decimal points.&quot;" newline="True"/>
+            <input variable="number"/>
+            <while expression="number &lt; 1">
+                <output expression="&quot;Oh no, the number you inputted is invalid! Please type in a positive real number.&quot;" newline="True"/>
+                <input variable="number"/>
+            </while>
+            <declare name="numbers" type="Real" array="True" size="number"/>
+            <call expression="computeAverage(numbers, number)"/>
+        </body>
+    </function>
+    <function name="computeAverage" type="None" variable="">
+        <parameters>
+            <parameter name="arr" type="Real" array="True"/>
+            <parameter name="count" type="Integer" array="False"/>
+        </parameters>
+        <body>
+            <declare name="sentence" type="String" array="False" size=""/>
+            <declare name="coun" type="Integer" array="False" size=""/>
+            <declare name="str" type="Integer" array="False" size=""/>
+            <declare name="accum" type="Real" array="False" size=""/>
+            <assign variable="accum" expression="0"/>
+            <assign variable="sentence" expression="&quot;The average of &quot;"/>
+            <for variable="coun" start="0" end="count - 1" direction="inc" step="1">
+                <output expression="&quot;Input the value of the &quot; &amp; coun + 1 &amp; ending (coun+1) &amp; &quot; number.&quot;" newline="True"/>
+                <input variable="arr[coun]"/>
+                <assign variable="accum" expression="accum + arr[coun]"/>
+                <if expression="count == 2">
+                    <then>
+                        <if expression="coun == 0">
+                            <then>
+                                <assign variable="sentence" expression="sentence &amp; arr[coun] &amp; &quot; &quot;"/>
+                            </then>
+                            <else>
+                                <assign variable="sentence" expression="sentence &amp; &quot;and &quot; &amp; arr[coun]"/>
+                            </else>
+                        </if>
+                    </then>
+                    <else>
+                        <if expression="coun = count - 1">
+                            <then>
+                                <assign variable="sentence" expression="sentence &amp; &quot;and &quot; &amp; arr[coun] &amp; &quot;&quot;"/>
+                            </then>
+                            <else>
+                                <assign variable="sentence" expression="sentence &amp; arr[coun] &amp; &quot;, &quot;"/>
+                            </else>
+                        </if>
+                    </else>
+                </if>
+            </for>
+            <assign variable="sentence" expression="&quot;Great job! &quot; &amp; sentence &amp; &quot; is &quot; &amp; ToFixed(accum/count, 2) &amp; &quot;.&quot;"/>
+            <output expression="sentence" newline="True"/>
+        </body>
+    </function>
+    <function name="ending" type="String" variable="end">
+        <parameters>
+            <parameter name="number" type="Integer" array="False"/>
+        </parameters>
+        <body>
+            <declare name="end" type="String" array="False" size=""/>
+            <if expression="(number &gt; 10 and number &lt; 20) or (number mod 100 &gt; 10 and number mod 100 &lt;20)">
+                <then>
+                    <assign variable="end" expression="&quot;th&quot;"/>
+                </then>
+                <else>
+                    <if expression="number mod 10 = 1">
+                        <then>
+                            <assign variable="end" expression="&quot;st&quot;"/>
+                        </then>
+                        <else>
+                            <if expression="number mod 10 = 2">
+                                <then>
+                                    <assign variable="end" expression="&quot;nd&quot;"/>
+                                </then>
+                                <else>
+                                    <if expression="number mod 10 = 3">
+                                        <then>
+                                            <assign variable="end" expression="&quot;rd&quot;"/>
+                                        </then>
+                                        <else>
+                                            <assign variable="end" expression="&quot;th&quot;"/>
+                                        </else>
+                                    </if>
+                                </else>
+                            </if>
+                        </else>
+                    </if>
+                </else>
+            </if>
+        </body>
+    </function>
+</flowgorithm>
